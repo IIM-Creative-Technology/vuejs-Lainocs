@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import Article from '../views/Admin.vue'
 import ModifyArticle from '../components/ModifyArticle'
+import SingleArticle from '../components/SingleArticle'
 
 const routes = [
   {
@@ -22,7 +23,13 @@ const routes = [
   {
     path: '/blog',
     name: 'Blog',
-    component: () => import('../views/Blog.vue')
+    component: () => import('../views/Blog.vue'),
+    children: [{
+      props: true,
+      path: '/blog/:id',
+      name: 'SingleArticle',
+      component: SingleArticle
+    }],
   },
   {
     path: '/login',
